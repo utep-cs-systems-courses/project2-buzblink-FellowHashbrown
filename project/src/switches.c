@@ -36,15 +36,22 @@ void switch_interrupt_handler()
 
   buzzer_set_period(0);
 
+  // Do fur elise and show a blinking green led
   if (!(p2val & sw1_state_down)) {
     fur_elise();
     switch_state_changed = 1;
+
+    // Do the c scale and show a blinking red led
   } else if (!(p2val & sw2_state_down)) {
-    c_scale();
+    c_scale(1);
     switch_state_changed = 2;
+
+    // Do the inverted c scale and show both leds
   } else if (!(p2val & sw3_state_down)) {
-    c_scale();
+    c_scale(-1);
     switch_state_changed = 3;
+
+    // Stop the song and show no leds
   } else if (!(p2val & sw4_state_down)) {
     stop();
     switch_state_changed = 4;
