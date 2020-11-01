@@ -15,7 +15,7 @@ void __interrupt_vec(PORT2_VECTOR) Port_2()
 void __interrupt_vec(WDT_VECTOR) WDT()
 {
   static char blink_count = 0;
-  if (++blink_count == 12) {
+  if (++blink_count == 1) {
     short i = 0;
     while (i++ < 5) {
       short j = 0;

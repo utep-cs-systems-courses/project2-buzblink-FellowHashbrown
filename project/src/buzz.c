@@ -16,8 +16,6 @@ void buzzer_init()
   P2DIR = BIT6;
 }
 
-// I give this a note in HZ and then i convert it
-// to cycles
 void buzzer_set_period(short cycles)
 {
   cycles = 2000000 / cycles;
@@ -28,40 +26,40 @@ void buzzer_set_period(short cycles)
 void fur_elise()
 {
   switch (furEliseCounter) {
-    case 0:
-    case 2:
-    case 4:
-    case 10:
-    case 13:
+    case 0: case 1:
+    case 4: case 5:
+    case 8: case 9:
+    case 20: case 21:
+    case 26: case 27:
       buzzer_set_period(E4);
       furEliseCounter++;
       break;
-    case 1:
-    case 3:
+    case 2: case 3:
+    case 6: case 7:
       buzzer_set_period(D4sharp);
       furEliseCounter++;
       break;
-    case 5:
-    case 12:
-    case 15:
+    case 10: case 11:
+    case 24: case 25:
+    case 30: case 31:
       buzzer_set_period(B4);
       furEliseCounter++;
       break;
-    case 6:
+    case 12: case 13:
       buzzer_set_period(D4);
       furEliseCounter++;
       break;
-    case 7:
-    case 9:
-    case 16:
+    case 14: case 15:
+    case 18: case 19:
+    case 32: case 33:
       buzzer_set_period(C4);
-      if (furEliseCounter++ == 16) {
+      if (furEliseCounter++ == 33) {
 	furEliseCounter = 0;
       }
       break;
-    case 8:
-    case 11:
-    case 14:
+    case 16: case 17:
+    case 22: case 23:
+    case 28: case 29:
       buzzer_set_period(A4);
       furEliseCounter++;
       break;
