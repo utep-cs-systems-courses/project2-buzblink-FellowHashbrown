@@ -16,8 +16,11 @@ void buzzer_init()
   P2DIR = BIT6;
 }
 
+// I give this a note in HZ and then i convert it
+// to cycles
 void buzzer_set_period(short cycles)
 {
+  cycles = 2000000 / cycles;
   CCR0 = cycles;
   CCR1 = cycles >> 1;
 }

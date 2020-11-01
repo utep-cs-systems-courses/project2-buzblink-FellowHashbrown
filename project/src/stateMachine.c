@@ -28,5 +28,4 @@ void state_advance()
   }
 
   led_changed = changed;
-  led_update();
 }
