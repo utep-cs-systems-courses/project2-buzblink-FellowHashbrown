@@ -6,6 +6,16 @@
 static short furEliseCounter = 0;
 static short cScaleCounter = 0;
 static short resetCScale = 1;
+static short stop_state = 0;
+
+static int furEliseNotes[] = {
+  E4, D4sharp, E4, D4sharp, E4,
+  B3, D4, C4, A3, A3, A3, A3,
+  C3, E3, A3, B3, B3, B3, B3,
+  E3, A3, B3, C4, C4, C4, C4, E3
+};
+static short furEliseLength = 27;
+static short furEliseIndex = 0;
 
 void buzzer_init()
 {
@@ -26,43 +36,17 @@ void buzzer_set_period(short cycles)
 void fur_elise()
 {
   switch (furEliseCounter) {
-    case 0: case 1:
-    case 4: case 5:
-    case 8: case 9:
-    case 20: case 21:
-    case 26: case 27:
-      buzzer_set_period(E4);
-      furEliseCounter++;
-      break;
-    case 2: case 3:
-    case 6: case 7:
-      buzzer_set_period(D4sharp);
-      furEliseCounter++;
-      break;
-    case 10: case 11:
-    case 24: case 25:
-    case 30: case 31:
-      buzzer_set_period(B4);
-      furEliseCounter++;
-      break;
-    case 12: case 13:
-      buzzer_set_period(D4);
-      furEliseCounter++;
-      break;
-    case 14: case 15:
-    case 18: case 19:
-    case 32: case 33:
-      buzzer_set_period(C4);
-      if (furEliseCounter++ == 33) {
-	furEliseCounter = 0;
-      }
-      break;
-    case 16: case 17:
-    case 22: case 23:
-    case 28: case 29:
-      buzzer_set_period(A4);
-      furEliseCounter++;
-      break;
+  case 0:
+    buzzer_set_period(furEliseNotes[furEliseIndex]);
+    furEliseCounter++;
+    break;
+  case 1:
+    buzzer_set_period(furEliseNotes[furEliseIndex]);
+    if (++furEliseIndex == furEliseLength) {
+      furEliseIndex = 0;
+    }
+    furEliseCounter = 0;
+    break;
   }
 }
 

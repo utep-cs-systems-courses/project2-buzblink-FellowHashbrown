@@ -23,8 +23,7 @@ void __interrupt_vec(WDT_VECTOR) WDT()
     }
     switch_interrupt_handler();
     blink_count = 0;
-  } else {
-    state_advance();
-    led_update();
   }
+  state_advance();
+  led_update();
 }
