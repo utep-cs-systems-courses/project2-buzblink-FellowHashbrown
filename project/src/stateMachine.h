@@ -2,5 +2,6 @@
 #define stateMachine_included
 
 void state_advance();
+void song_advance();
 
 #endif
