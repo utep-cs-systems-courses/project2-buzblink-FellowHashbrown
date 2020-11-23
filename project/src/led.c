@@ -27,6 +27,98 @@ void led_update()
   }
 }
 
+void dim_75()
+{
+  switch (red_led_state) {
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+      red_on = 1;
+      green_on = 1;
+      if (++red_led_state == 6) {
+        red_led_state = 0;
+      }
+      break;
+    case 0:
+    case 1:
+      red_on = 0;
+      green_on = 0;
+      red_led_state++;
+      break;
+  }
+  led_changed = 1;
+}
+
+void dim_50()
+{
+  switch (green_led_state) {
+    case 0:
+    case 1:
+    case 2:
+      green_on = 1;
+      red_on = 1;
+      green_led_state++;
+      break;
+    case 3:
+    case 4:
+    case 5:
+      green_on = 0;
+      red_on = 0;
+      if (++green_led_state == 6) {
+        green_led_state = 0;
+      }
+      break;
+  }
+  led_changed = 1;
+}
+
+void dim_25()
+{
+  switch (red_led_state) {
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+      red_on = 0;
+      green_on = 0;
+      if (++red_led_state == 6) {
+        red_led_state = 0;
+      }
+      break;
+    case 0:
+    case 1:
+      red_on = 1;
+      green_on = 1;
+      red_led_state++;
+      break;
+  }
+  led_changed = 1;
+}
+
+void binary_led()
+{
+  switch (red_led_state) {
+  case 0:
+    red_on = 0;
+    green_on = 0;
+    red_led_state++;
+    break;
+  case 1:
+    red_on = 1;
+    red_led_state++;
+    break;
+  case 2:
+    red_on = 0;
+    green_on = 1;
+    red_led_state++;
+    break;
+  case 3:
+    red_on = 1;
+    red_led_state = 0;
+    break;
+  }
+}
 void toggle_red()
 {
   switch (red_led_state) {

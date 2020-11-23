@@ -9,9 +9,10 @@
 
 void led_init();
 void led_update();
-void toggle_red();
-void toggle_green();
-void toggle_red_green();
+void dim_75();
+void dim_50();
+void dim_25();
+void binary_led();
 void toggle_off();
 
 extern unsigned char leds_changed, green_led_state, red_led_state;
