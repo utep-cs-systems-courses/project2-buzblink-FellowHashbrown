@@ -32,7 +32,7 @@ static int song2Notes[] = {
 static short song2Length = 32;
 static short song2Index = 0;
 
-// Song 3 - TBD
+// Song 3 - Never Gonna Give You Up
 static int song3Notes[] = {
   A3, B3, D4, B3,
   F4sharp, 0, F4sharp, 0, E4, E4,
