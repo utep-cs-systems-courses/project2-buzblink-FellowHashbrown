@@ -2,20 +2,47 @@
 #include "buzz.h"
 #include "notes.h"
 #include "libTimer.h"
+#include "switches.h"
 
-static short furEliseCounter = 0;
-static short cScaleCounter = 0;
-static short resetCScale = 1;
-static short stop_state = 0;
+static short song1Counter = 0;
+static short song2Counter = 0;
+static short song3Counter = 0;
 
-static int furEliseNotes[] = {
+// Fur Elise
+static int song1Notes[] = {
   E4, D4sharp, E4, D4sharp, E4,
-  B3, D4, C4, A3, A3, A3, A3,
-  C3, E3, A3, B3, B3, B3, B3,
-  E3, A3, B3, C4, C4, C4, C4, E3
+  B3, D4, C4, A3, A3, A3,
+  C3, E3, A3, B3, B3, B3,
+  E3, A3, B3, C4, C4, C4, E3
 };
-static short furEliseLength = 27;
-static short furEliseIndex = 0;
+static short song1Length = 24;
+static short song1Index = 0;
+
+// In The Hall of The Mountain King
+static int song2Notes[] = {
+  A3, B3, C4, D4,
+  E4, C4, E4, 0,
+  D4sharp, B3, D4sharp, 0,
+  D4, A3sharp, D4, 0,
+  A3, B3, C4, D4,
+  E4, C4, E4, A4,
+  G4, E4, C4, E4,
+  G4, G4, G4, 0
+};
+static short song2Length = 32;
+static short song2Index = 0;
+
+// Song 3 - TBD
+static int song3Notes[] = {
+  A3, B3, D4, B3,
+  F4sharp, 0, F4sharp, 0, E4, E4,
+  A3, B3, D4, B3,
+  E4, 0, E4, 0, D4, D4, C4sharp, B3, 0,
+  A3, B3, D4, B3,
+  D4, D4, E4, C4sharp, C4sharp, 0, A3, 0, A3, E4, E4, D4, D4, 0
+};
+static short song3Length = 41;
+static short song3Index = 0;
 
 void buzzer_init()
 {
@@ -33,85 +60,54 @@ void buzzer_set_period(short cycles)
   CCR1 = cycles >> 1;
 }
 
-void fur_elise()
+void song_1()
 {
-  switch (furEliseCounter) {
+  switch (song1Counter) {
   case 0:
-    buzzer_set_period(furEliseNotes[furEliseIndex]);
-    furEliseCounter++;
+    buzzer_set_period(song1Notes[song1Index]);
+    song1Counter++;
     break;
   case 1:
-    buzzer_set_period(furEliseNotes[furEliseIndex]);
-    if (++furEliseIndex == furEliseLength) {
-      furEliseIndex = 0;
+    buzzer_set_period(song1Notes[song1Index]);
+    if (++song1Index == song1Length) {
+      song1Index = 0;
     }
-    furEliseCounter = 0;
+    song1Counter = 0;
     break;
   }
 }
 
-void c_scale(short direction)
+void song_2()
 {
-  switch (cScaleCounter) {
-    case 0:
-      buzzer_set_period(C4);
-      if (direction < 0 && resetCScale) {
-        cScaleCounter = 11;
-	resetCScale = 0;
-      } else {
-	cScaleCounter += direction;
-      }
-      break;
-    case 1:
-      buzzer_set_period(C4sharp);
-      cScaleCounter += direction;
-      resetCScale = 1;
-      break;
-    case 2:
-      buzzer_set_period(D4);
-      cScaleCounter += direction;
-      break;
-    case 3:
-      buzzer_set_period(D4sharp);
-      cScaleCounter += direction;
-      break;
-    case 4:
-      buzzer_set_period(E4);
-      cScaleCounter += direction;
-      break;
-    case 5:
-      buzzer_set_period(F4);
-      cScaleCounter += direction;
-      break;
-    case 6:
-      buzzer_set_period(F4sharp);
-      cScaleCounter += direction;
-      break;
-    case 7:
-      buzzer_set_period(G4);
-      cScaleCounter += direction;
-      break;
-    case 8:
-      buzzer_set_period(G4sharp);
-      cScaleCounter += direction;
-      break;
-    case 9:
-      buzzer_set_period(A4);
-      cScaleCounter += direction;
-      break;
-    case 10:
-      buzzer_set_period(A4sharp);
-      cScaleCounter += direction;
-      resetCScale = 1;
-      break;
-    case 11:
-      buzzer_set_period(B4);
-      if (direction > 0 && resetCScale) {
-	cScaleCounter = 0;
-      } else {
-        cScaleCounter += direction;
-      }
-      break;
+  switch (song2Counter) {
+  case 0:
+    buzzer_set_period(song2Notes[song2Index]);
+    song2Counter++;
+    break;
+  case 1:
+    buzzer_set_period(song2Notes[song2Index]);
+    if (++song2Index == song2Length) {
+      song2Index = 0;
+    }
+    song2Counter = 0;
+    break;
+  }
+}
+
+void song_3()
+{
+  switch (song3Counter) {
+  case 0:
+    buzzer_set_period(song3Notes[song3Index]);
+    song3Counter++;
+    break;
+  case 1:
+    buzzer_set_period(song3Notes[song3Index]);
+    if (++song3Index == song3Length) {
+      song3Index = 0;
+    }
+    song3Counter = 0;
+    break;
   }
 }
 
