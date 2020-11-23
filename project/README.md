@@ -14,7 +14,7 @@ Project 2 consisted of creating a buzzy blinky toy that made sounds and made the
   just the meme part:
   * *Never gonna give you up, never gonna let you down, never gonna run around
   and desert you*
-  * Both the greend and red LEDs are dimmed to 25% in this state as well
+  * Both the green and red LEDs are dimmed to 25% in this state as well
 
 * When you press SW4, all sounds stop playing and the LEDs move into a pattern
   of going through the binary numbers from 0 to 3.
